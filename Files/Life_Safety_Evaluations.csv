@@ -1,0 +1,100 @@
+Building Street Number,Building Street Direction,Building Street Name,Building Street Type I,Report Status - Original LSE Report Approved,Report Status - LSE Report Resubmitted,Report Status - Resubmitted Report Approved,Construction Status (Self-Reported by Building Representative),Installing a full sprinkler system instead of an alternative LSE Compliance scope of work (Self-Reported by Building Representative),Inspection Status - Inspection Results,Inspection Status - Date Passed,Scheduled Inspection Date,Rescheduled Inspection Date,Strength
+1,N.,LaSalle,St.,Yes,Not Applicable,Not Applicable,In Process,No,FAILED,,,,178
+1,E.,Schiller,St.,Yes,Not Applicable,Not Applicable,Work Not Started,No,Passed,,,,289
+1,E.,Scott,Ave.,Yes,Not Applicable,Not Applicable,Ready for Inspection,No,FAILED,,,,88
+2,E.,Oak,St.,No,Yes,Yes,Work Not Started,No,FAILED,,,,279
+5,S.,Wabash,Ave.,No,Yes,No,Ready for Inspection,No,In Court,,,,56
+8,S.,Michigan,Ave.,Yes,Not Applicable,Not Applicable,Ready for Inspection,No,Passed,,,,55
+10,S.,Canal,St.,No,Yes,Yes,Not Submitted,Yes,CFD/INCOMPLETE,,,,235
+10,W.,Elm,St.,No,Yes,Yes,Work Not Started,No,FAILED,,,,250
+14,W.,Elm,St.,No,No,Yes,Not Submitted,No,FAILED,,,,230
+17,N.,State,St.,Yes,Not Applicable,Not Applicable,Ready for Inspection,Yes,Passed,,,,250
+18,E.,Elm,St.,No,Yes,Yes,Ready for Inspection,No,Passed,,,,238
+18,S.,Michigan,Ave.,No,Yes,Yes,Ready for Inspection,Yes,Sprinkled,,,,66
+20,E.,Cedar,St.,No,Yes,Yes,Not Submitted,No,FAILED,,,,211
+20,N.,Wacker,Dr.,Yes,Not Applicable,Not Applicable,Ready for Inspection,Yes,CFD/INCOMPLETE,,,,490
+21,E.,Chestnut,St.,No,Yes,Yes,Work Not Started,No,FAILED,,,,190
+21,W.,Goethe,St.,Yes,Yes,Yes,Ready for Inspection,No,FAILED,,,,445
+24,W.,Randolph,St.,No,Yes,Yes,Work Not Started,No,FAILED,,,,450
+25,E.,Delaware,Pl.,No,Yes,Yes,Ready for Inspection,No,Passed,,,,540
+25,E.,Washington,,Yes,Not Applicable,Not Applicable,Ready for Inspection,Yes,Sprinkled,,,,446
+28,E.,Jackson,Blvd.,No,Yes,Yes,Not Submitted,No,FAILED,,,,338
+29,E.,Madison,St.,Yes,Not Applicable,Not Applicable,Ready for Inspection,No,FAILED,12/16/0019,,12/16/0019,310
+30,E.,Division,St.,Yes,Not Applicable,Not Applicable,In Process,No,FAILED,,,,315
+30,E.,Elm,St.,Yes,Not Applicable,Not Applicable,In Process,No,Passed,,,,320
+30,N.,Michigan,Ave.,Yes,Not Applicable,Not Applicable,Ready for Inspection,Yes,Passed,,,,76
+30,S.,Michigan,Ave.,No,Yes,Yes,In Process,Yes,Sprinkled,,,,84
+33,E.,Cedar,St.,Yes,Not Applicable,Not Applicable,Not Submitted,No,FAILED,,,,330
+33,N.,LaSalle,St.,No,Yes,Yes,In Process,Yes,Sprinkled,,,,335
+40,E.,9th,Street,No,Yes,Yes,In Process,No,CFD/INCOMPLETE,,,,345
+40,E.,Cedar,St.,No,Yes,Yes,Work Not Started,No,Passed,,,,350
+40,E.,Delaware,Pl.,No,Yes,Yes,Work Not Started,No,CFD/INCOMPLETE,,,,178
+50,W.,71st,St.,Yes,Not Applicable,Not Applicable,In Process,No,Passed,,,,355
+123,W.,Madison,St.,Yes,Not Applicable,Not Applicable,Work Not Started,No,FAILED,,,,360
+50,E.,Bellevue,Place,Yes,Not Applicable,Not Applicable,In Process,No,FAILED,,,,130
+50,W.,Washington,,Yes,Not Applicable,Not Applicable,Ready for Inspection,Yes,sprinkled,,,,45
+53,W.,Jackson,,Yes,Not Applicable,Not Applicable,In Process,Yes,Sprinkled,,,,67
+54,W.,Hubbard,,No,Yes,Yes,In Process,TBD,FAILED,,,,34
+55,W.,Chestnut,St.,Yes,Not Applicable,Not Applicable,Ready for Inspection,No,Passed,,,,205
+55,E.,Washington,,No,Yes,Yes,In Process,Yes,Sprinkled,,,,68
+60,E.,32nd,,No,Yes,Yes,Not Submitted,Yes,Sprinkled,,,,90
+65,E.,Scott,St.,Yes,Yes,Yes,Work Not Started,No,FAILED,,,,210
+65,E.,Wacker,Pl.,Yes,Not Applicable,Not Applicable,In Process,No,FAILED,,,,120
+70,W.,Burton,Place,Yes,Not Applicable,Not Applicable,Work Not Started,No,passed,,,,170
+70,E.,Cedar,St.,Yes,Yes,Yes,Ready for Inspection,No,Passed,,,,220
+70,E.,Walton,St.,No,Yes,Yes,Ready for Inspection,No,Passed,,,,225
+71,E.,Division,St.,No,Yes,Yes,Ready for Inspection,No,Passed,,,,230
+73,E.,Elm,St.,Yes,Yes,Yes,Ready for Inspection,No,FAILED,,,,285
+76,E.,Monroe,St.,No,Yes,Yes,In Process,Yes,Sprinkled,,,,285
+77,W.,Huron,St.,Yes,Not Applicable,Not Applicable,Ready for Inspection,No,FAILED,,,,295
+77,W.,Washington,,No,Yes,Yes,Not Submitted,No,FAILED,,,,46
+78,E.,Washington,(Chicago Cultural Cntr.),No,Yes,Yes,Not Submitted,No,FAILED,,,,68
+88,W.,Schiler,St.,Yes,Not Applicable,Not Applicable,Ready for Inspection,No,Passed,,,,275
+100,E.,Bellevue,Pl,Yes,Not Applicable,Not Applicable,In Process,No,FAILED,,,,160
+100,W.,Chestnut,St.,Yes,Not Applicable,Not Applicable,Work Not Started,No,CFD/INCOMPLETE,,,,290
+100,E.,Walton,Pl.,Yes,Not Applicable,Not Applicable,Work Not Started,No,FAILED,,,,120
+105,S.,Ashland,Ave.,No,Yes,Yes,Ready for Inspection,Yes,Sprinkled,,,,79
+110,E.,Delaware,Pl.,Yes,Yes,Yes,Not Submitted,Yes,Sprinkled,,,,150
+110,W.,Madison,St.,No,Yes,No,Ready for Inspection,No,FAILED,,,,230
+111,E.,Chestnut,St.,Yes,Not Applicable,Not Applicable,Work Not Started,No,FAILED,,,,190
+111,W.,Huron,,No,Yes,Yes,Ready for Inspection,Yes,Sprinkled,,,,36
+111,N.,Wabash,Ave.,Yes,Not Applicable,Not Applicable,Ready for Inspection,No,CFD/INCOMPLETE,,,,74
+111,W.,Washington,,Yes,Yes,Yes,Ready for Inspection,No,CFD/INCOMPLETE,,,,27
+118,N.,Clark,St.,No,Yes,Yes,Work Not Started,No,FAILED,,,,222
+120,S.,LaSalle, ,Yes,Not Applicable,Not Applicable,Ready for Inspection,Yes,sprinkled,,,,37
+125,S.,Clark,St.,Yes,Yes,Yes,In Process,No,FAILED,,,,129
+134,N.,LaSalle,St.,Yes,Not Applicable,Not Applicable,Ready for Inspection,Yes,Passed,,,,218
+150,S.,Campbell,Ave.,No,Yes,Yes,In Process,No,FAILED,,,,95
+151,W.,Randolph,St.,No,Yes,Yes,Work Not Started,No,CFD/INCOMPLETE,,,,189
+155,N.,Harbor,Dr.,No,Yes,Yes,Work Not Started,No,FAILED,,,,339
+160,W.,Chicago,Ave.,Yes,Not Applicable,Not Applicable,In Process,Yes,Sprinkled,,,,79
+162,E.,Ontario,St.,Yes,Not Applicable,Not Applicable,In Process,No,FAILED,,,,179
+175,E.,Delaware,Pl.,Yes,Not Applicable,Not Applicable,Work Not Started,No,FAILED,,,,140
+175,N.,State,St.,No,Yes,Yes,Not Submitted,Not Submitted,CFD/INCOMPLETE,,,,156
+176,W.,Washington,,No,Yes,Yes,In Process,No,FAILED,,,,28
+179,E.,Lake Shore,Dr.,No,Yes,Yes,Work Not Started,No,FAILED,,,,449
+180,W.,Washington,,No,Yes,yes,Ready for Inspection,No,FAILED,,,,78
+189,E.,Lake Shore,Dr.,No,Yes,Yes,Work Not Started,No,FAILED,,,,440
+199,E.,Lake Shore,Dr.,Yes,Not Applicable,Not Applicable,Work Not Started,No,FAILED,,,,390
+200,E.,Chestnut,St.,No,Yes,Yes,Ready for Inspection,Yes,sprinkled,,,,145
+200,E.,Delaware,Pl.,Yes,Not Applicable,Not Applicable,In Process,No,Passed,,,,130
+201,E.,Chestnut,St.,Yes,Not Applicable,Not Applicable,Work Not Started,No,FAILED,,,,139
+201,E.,Delaware,Pl.,Yes,Not Applicable,Not Applicable,Ready for Inspection,Yes,Sprinkled,,,,180
+203,N.,Wabash,Ave.,No,Yes,Yes,In Process,Yes,Sprinkled,,,,28
+208,S.,LaSalle,St.,Yes,Not Applicable,Not Applicable,Not Submitted,Yes,Sprinkled,,,,160
+209,E.,Lake Shore,Dr.,No,Yes,Yes,In Process,No,FAILED,,,,289
+210,E.,Pearson,St.,Yes,Not Applicable,Not Applicable,In Process,No,Passed,,,,128
+211,E.,Delaware,Pl.,Yes,Not Applicable,Not Applicable,Ready for Inspection,Yes,Sprinkled,,,,190
+211,E.,Ohio,St.,Yes,Not Applicable,Not Applicable,Ready for Inspection,No,FAILED,,,,410
+215,E.,Chestnut,St.,No,Yes,Yes,In Process,No,FAILED,,,,420
+215,W.,Ontario,St.,No,No,Not Submitted,Not Submitted,No,In Court,,,,425
+218,S.,Wabash,Ave.,No,Yes,Yes,Ready for Inspection,No,FAILED,,,,66
+219,E.,Lake Shore,Dr.,No,Yes,Yes,In Process,No,FAILED,,,,330
+220,E.,Walton,St.,Yes,Not Applicable,Not Applicable,Ready for Inspection,No,FAILED,,,,430
+221,N.,LaSalle,St.,No,Yes,Yes,Ready for Inspection,No,Passed,,,,435
+222,E.,Chestnut,St.,No,Yes,Yes,In Process,No,In Court,,,,440
+222,S.,Racine,Ave.,No,Yes,yes,Not Submitted,No,In Court,,,,93
+223,W.,Jackson,,Yes,Yes,Yes,Ready for Inspection,No,Passed,,,,56
+225,W.,Randolph,St.,Yes,Yes,Yes,Not Applicable,Yes,sprinkled,,,,450
+226,W.,Ontario,St.,No,No,Not Submitted,Not Submitted,No,In Court,,,,460
+226,S.,Wabash,Ave.,No,Yes,Yes,Ready for Inspection,No,FAILED,,,,78

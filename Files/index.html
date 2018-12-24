@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Dashboard</title>
+<script src="dataframe.js"></script>
+<script src="DataSet.js"></script>
+<script src="Chart.js"></script>
+<script src="ChartConfig.js"></script>
+<script src="ChartFactory.js"></script>
+<script src="PoliceStationData.js"></script>
+<script src="FireStationData.js"></script>
+<script src="CrimeData.js"></script>
+<script src="LifeSafetyData.js"></script>
+<script src="PublicHealthData.js"></script>
+<script src="plot.js"></script>
+<script src="Line.js"></script>
+<script src="Bar.js"></script>
+<script src="Pie.js"></script>
+<script src="Polar.js"></script>
+<script src="Doughnut.js"></script>
+<script src="Export.js"></script>
+<script src="JSONExport.js"></script>
+<script src="CSVExport.js"></script>
+<script type="text/javascript" src="Chart.js"></script>
+<script src="datatables.min.js"></script>
+<link rel="stylesheet" href="datatables.min.css">
+		
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfIgz8FDvwv7YsPadQ4LP9eRu1m5EL3-Y&libraries=visualization&callback=initMap">
+    </script>
+
+<style type="text/css">
+header{
+    padding: 1em;
+    color: white;
+    background-color: #55C3F2;
+    clear: left;
+	font-family:Palatino;
+    text-align: left;
+}
+footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+
+article {
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+.center {
+	margin:50%
+    text-align: center;
+}
+
+
+li {
+    float: left;
+	
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}    
+    
+    
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+li a.active {
+    background-color: #3C3CFF;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+.publicSafetyBackGround{
+	height : 500px;
+	background-image: url("../images/wall2.jpg");
+	
+}
+/* .subHeadClass{
+	height : 500px;
+	overflow : scroll;
+} */
+.content{
+	color : white;
+}
+.button1 {
+    height: 50px;
+    width: 200px;
+    border-radius: 4px;
+    background-color: #4CAEEE; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 4px 2px 4px;
+    cursor: pointer;
+}
+.button2 {
+    height: 30px;
+    width: 100px;
+    border-radius: 4px;
+    background-color: #4CAEEE; 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 4px 2px 4px;
+    cursor: pointer;
+}
+
+.headClass{
+	color : black;
+	text-align: center;
+}
+#plotButton{
+	color : black;
+}
+.chartWrapper {
+    position: relative;
+}
+.nav{
+    border:1px solid #ccc;
+    border-width:1px 0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+
+.chartWrapper > canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events:none;
+}
+
+.chartAreaWrapper {
+    overflow-x: scroll;
+}
+
+</style>
+
+<script type="text/javascript">
+
+var dataType='';
+
+function onLoad(){
+	//document.getElementById("defaultArticle").style.display = '';
+	document.getElementById("crimePriorOneyearArticle").style.display = 'none';
+	document.getElementById("policeStationArticle").style.display = 'none';
+	document.getElementById("fireStationArticle").style.display = 'none';
+	document.getElementById("lifeSafetyEvaluationArticle").style.display = 'none';
+	document.getElementById("publicHealthServiceArticle").style.display = 'none';
+	document.getElementById("policeStationId").style.display = 'none';
+	document.getElementById("fireStationId").style.display = 'none';
+	document.getElementById("lifeSafetyId").style.display = 'none';
+	document.getElementById("publicHealthServiceId").style.display = 'none';
+	document.getElementById("crimeDataId").style.display = 'none';
+	
+}
+
+function menu(dataset){
+	
+	if(dataset =='dataset0'){
+		document.getElementById("defaultArticle").style.display = '';
+		document.getElementById("crimePriorOneyearArticle").style.display = 'none';
+		document.getElementById("policeStationArticle").style.display = 'none';
+		document.getElementById("fireStationArticle").style.display = 'none';
+		document.getElementById("lifeSafetyEvaluationArticle").style.display = 'none';
+		document.getElementById("publicHealthServiceArticle").style.display = 'none';
+		document.getElementById("policeStationId").style.display = 'none';
+		document.getElementById("fireStationId").style.display = 'none';
+		document.getElementById("lifeSafetyId").style.display = 'none';
+		document.getElementById("publicHealthServiceId").style.display = 'none';
+		document.getElementById("crimeDataId").style.display = 'none';
+		dataType='home';
+		
+		
+		
+	} else if(dataset =='dataset1'){
+		document.getElementById("defaultArticle").style.display = 'none';
+		document.getElementById("crimePriorOneyearArticle").style.display = '';
+		document.getElementById("policeStationArticle").style.display = 'none';
+		document.getElementById("fireStationArticle").style.display = 'none';
+		document.getElementById("lifeSafetyEvaluationArticle").style.display = 'none';
+		document.getElementById("publicHealthServiceArticle").style.display = 'none';
+		document.getElementById("crimeDataSet").style.display = 'none';
+		document.getElementById("crimeDataId").style.display = 'none';
+		
+		dataType='CPPS';
+		new CrimeData().callDataSet(); 
+		 if((document.getElementById("crimeTableId")!=null)&&(document.getElementById("crimeTableId").length!=0)){
+			document.getElementById("crimeTableId").remove();
+		} 
+	} else if(dataset =='dataset2'){
+		document.getElementById("defaultArticle").style.display = 'none';
+		document.getElementById("crimePriorOneyearArticle").style.display = 'none';
+		document.getElementById("policeStationArticle").style.display = '';
+		document.getElementById("fireStationArticle").style.display = 'none';
+		document.getElementById("lifeSafetyEvaluationArticle").style.display = 'none';
+		document.getElementById("publicHealthServiceArticle").style.display = 'none';
+		document.getElementById("policeDataSet").style.display = 'none';
+		document.getElementById("policeStationId").style.display = 'none';
+		dataType='PSPS';
+		new PoliceStationData().callDataSet(); 
+		if((document.getElementById("policeTableId")!=null)&&(document.getElementById("policeTableId").length!=0)){
+			document.getElementById("policeTableId").remove();
+		}
+	} else if(dataset =='dataset3'){
+		document.getElementById("defaultArticle").style.display = 'none';
+		document.getElementById("crimePriorOneyearArticle").style.display = 'none';
+		document.getElementById("policeStationArticle").style.display = 'none';
+		document.getElementById("fireStationArticle").style.display = '';
+		document.getElementById("lifeSafetyEvaluationArticle").style.display = 'none';
+		document.getElementById("publicHealthServiceArticle").style.display = 'none';
+		document.getElementById("fireDataSet").style.display = 'none';
+		document.getElementById("fireStationId").style.display = 'none';
+		dataType='FSPS';
+		new FireStationData().callDataSet();
+		if((document.getElementById("fireTableId")!=null)&&(document.getElementById("fireTableId").length!=0)){
+			document.getElementById("fireTableId").remove();
+		}
+	} else if(dataset =='dataset4'){
+		document.getElementById("defaultArticle").style.display = 'none';
+		document.getElementById("crimePriorOneyearArticle").style.display = 'none';
+		document.getElementById("policeStationArticle").style.display = 'none';
+		document.getElementById("fireStationArticle").style.display = 'none';
+		document.getElementById("lifeSafetyEvaluationArticle").style.display = '';
+		document.getElementById("publicHealthServiceArticle").style.display = 'none';
+		document.getElementById("lifesafetyDataSet").style.display = 'none';
+		document.getElementById("lifeSafetyId").style.display = 'none';
+		dataType='LSPS';
+		new LifeSafetyData().callDataSet();
+		if((document.getElementById("lifesafetyTableId")!=null)&&(document.getElementById("lifesafetyTableId").length!=0)){
+			document.getElementById("lifesafetyTableId").remove();
+		}
+	} else if(dataset =='dataset5'){
+		document.getElementById("defaultArticle").style.display = 'none';
+		document.getElementById("crimePriorOneyearArticle").style.display = 'none';
+		document.getElementById("policeStationArticle").style.display = 'none';
+		document.getElementById("fireStationArticle").style.display = 'none';
+		document.getElementById("lifeSafetyEvaluationArticle").style.display = 'none';
+		document.getElementById("publicHealthServiceArticle").style.display = '';
+		document.getElementById("publichealthDataSet").style.display = 'none';
+		document.getElementById("publicHealthServiceId").style.display = 'none';
+		dataType='PHPS';
+		new PublicHealthData().callDataSet();
+		if((document.getElementById("publichealthTableId")!=null)&&(document.getElementById("publichealthTableId").length!=0)){
+			document.getElementById("publichealthTableId").remove();
+		}
+	}
+}
+
+function openExport(dataSetName){
+	
+	switch(dataSetName){
+	case "crimeData":
+		new Export().exportData(document.getElementById("exportCrimeId").value,dataSetName);
+		break;
+	case "policeStationData":
+		new Export().exportData(document.getElementById("exportPoliceId").value,dataSetName);
+		break;
+	case "fireStationData":
+		new Export().exportData(document.getElementById("exportFireId").value,dataSetName);
+		break;
+	case "lifeSafetyData":
+		new Export().exportData(document.getElementById("exportLifeId").value,dataSetName);
+		break;
+	case "publicHealthData":
+		new Export().exportData(document.getElementById("exportHealthId").value,dataSetName);
+		break;
+	
+	}
+	
+	
+}
+
+</script>
+</head>
+<body onload="onLoad();">
+<div class="parallax"></div>
+<header>
+<h1>DASHBOARD</h1>
+</header>
+<nav class= "center">
+<ul>
+   <li><a id="dataset0" href="#dataset0" onclick="menu('dataset0');return false;" title="View Home page"><h3>Home</h3></a></li>
+  <li><a id="dataset1" href="#dataset1" onclick="menu('dataset1');return false;" title="View Crime Prior One Year Data"><h3>Crime Data</h3></a></li>
+  <li><a id="dataset2" href="#dataset2" onclick="menu('dataset2');return false;" title="View Police Station Data"><h3>Police Station</h3></a></li>
+  <li><a id="dataset3" href="#dataset3" onclick="menu('dataset3');return false;" title="View Fire Station Data"><h3>Fire Station</h3></a></li>
+  <li><a id="dataset4" href="#dataset4" onclick="menu('dataset4');return false;" title="View Life Safety Evaluation Data"><h3>Life Safety Evaluation</h3></a></li>
+  <li><a id="dataset5" href="#dataset5" onclick="menu('dataset5');return false;" title="View Public Health Service Data"><h3>Public Health Service</h3></a></li>
+</ul>
+</nav>
+
+<article id="defaultArticle" class="publicSafetyBackGround">
+</article>
+
+<article id="crimePriorOneyearArticle" class="subHeadClass">
+	<h1 class="headClass" >Crime Data</h1>
+	<div class="center" style="margin-left: 230px;">
+	<button class="button1" onclick="crimeDataChart()" >Chart</button>
+	<button class="button1" onclick="new CrimeData().filter()">Filter</button>
+  
+	<select id="exportCrimeId" class="button1" style="height:48px;">
+	<option value="csv">Export as CSV</option>
+	<option value="json">Export as JSON</option>
+	</select> 
+		<button  id="exportButton" class="button1" onclick="openExport('crimeData')">Export</button>
+		
+	</div>
+	
+	<br/>
+	<div id="RowFilter" style="margin-left:130px; font-size:150%;">
+		
+        <label style="font-family:serif;">Row Filter </label>
+		<input type="checkbox" id="oneId" value="one"><label style="font-family:serif; ;"> Battery </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="twoId" value="two"><label style="font-family:serif; ;">  MotorVehicle Theft  </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="thousandId" value="thousand"><label style="font-family:serif; ;"> Criminal Damage </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="streetId" value="street"><label style="font-family:serif; ;"> Street </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="residenceId" value="residence"><label style="font-family:serif; ;"> Residence </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button id="filterbutton" class="button1" onclick="new Rowdata().callDataSet()" style="height:30px;width:100px;font-weight:bold;margin-left:20px;" >Filter</button><br/>
+	</div>
+	<br/>
+	<br/>
+	<div id="crimeFilter" style="height:100px;width:1200px;">
+	</div>
+	<div id="myTable"></div>
+   <div id="crimeDataSet" style="overflow:scroll;height:400px;width: 1360px;">
+	</div>
+	<div id="crimeDataId" style="overflow:scroll;">
+	<div id="crimeDataChartTypeId" style="margin-left:130px; font-size:150%;">
+		
+        <label style="font-family:serif;">Visualize Data As </label>
+		<input type="checkbox" id="crimeDataLineId" value="Line"><label style="font-family:serif; ;">Line Chart</label>
+		<input type="checkbox" id="crimeDataBarId" value="Bar"><label style="font-family:serif; ;">Bar Chart</label>
+		<input type="checkbox" id="crimeDataPieId" value="Pie"><label style="font-family:serif; ;">Pie Chart</label>
+		<input type="checkbox" id="crimeDataPolarId" value="Polar"><label style="font-family:serif; ;">Polar Chart</label>
+		<input type="checkbox" id="crimeDataDoughnutId" value="Doughnut"><label style="font-family:serif; ;">Doughnut Chart</label>
+		<input type="checkbox" id="crimeDataMapId" value="Crimemap"><label style="font-family:serif; ;">Heat Map</label>
+		<button id="plotButton" class="button1" onclick="crimeDataPlotChart()" style="height:30px;width:100px;font-weight:bold;margin-left:20px;" >View</button><br/>
+	</div>
+	<div id="crimeDataChartId" style="height:600px;width:1090px;">
+            <canvas class="center" id="crimeDataLineChart" width="970" height="320" style="margin-left:50px;display: block;height:400px;width:1200px;" ></canvas><br/>
+		<canvas id="crimeDataBarChart" width="1212" height="400" style="margin-left:50px;height:320px;width:970px;"></canvas><br/>
+		<canvas id="crimeDataPieChart" width="1212" height="500" style="margin-left:50px;height:320px;width:970px;"></canvas><br/><br/>
+		<canvas id="crimeDataPolarChart" width="1212" height="500" style="margin-left:50px;display: block;height:500px;width:970px;"></canvas><br/><br/>
+		<canvas id="crimeDataDoughnutChart" width="1212" height="650" style="margin-left:50px;display: block;height:600px;width:970px;"></canvas><br/><br/>
+		<div id="map" width="1212" height="650" style="margin-left:120px;display: block;height:600px;width:970px;"></div>
+	</div>
+	</div>
+</article>
+
+<article id="policeStationArticle" class="subHeadClass">
+	<h1 class="headClass" >Police Station Data</h1>
+	<div class="center" style="margin-left: 230px;">
+	<button class="button1" onclick="policeStationChart()" >Chart</button>
+	<button class="button1" onclick="new PoliceStationData().filter()" >Filter</button>
+	<button id="exportButton" class="button1" onclick="openExport('policeStationData')">Export</button>
+	<select id="exportPoliceId" class="button1">
+ 	 	<option value="csv">Export as CSV</option>
+  		<option value="json">Export as JSON</option>
+	</select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</div>
+	<br/>
+	<div id="PRowFilter" style="margin-left:130px; font-size:150%;">
+		
+        <label style="font-family:serif;">Row Filter </label>
+		<input type="checkbox" id="poneId" value="one"><label style="font-family:serif; ;"> ZIPCODE (60630) </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="ptwoId" value="two"><label style="font-family:serif; ;"> ZIPCODE (60613)  </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="distId" value="dist"><label style="font-family:serif; ;"> AUSTIN  </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="distId1" value="dist1"><label style="font-family:serif; ;"> HARRISON  </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="distId2" value="dist2"><label style="font-family:serif; ;"> OGDEN  </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button id="filterbutton" class="button1" onclick="new Prowdata().callDataSet()" style="height:30px;width:100px;font-weight:bold;margin-left:20px;" >Filter</button><br/>
+	</div>
+	<br/>
+	<br/>
+	<div id="policeStationFilter" style="height:80px;width:1200px;">
+	</div>
+	<div id="PoliceTable"></div>
+	<div id="policeDataSet" style="overflow:scroll;height:400px;width: 1360px;">
+	</div>
+	<div id="policeStationId" style="overflow:scroll;">
+	<div id="policeStationChartTypeId" style="margin-left: 130px;font-size:150%;">
+		<label>Visualize Data As </label>
+		<input type="checkbox" id="policeStationLineId" value="Line" style="margin-left:30px;">Line Chart</input>
+		<input type="checkbox" id="policeStationBarId" value="Bar">Bar Chart</input>
+		<input type="checkbox" id="policeStationPieId" value="Pie">Pie Chart</input>
+		<input type="checkbox" id="policeStationPolarId" value="Polar">Polar Chart</input>
+		<input type="checkbox" id="policeStationDoughnutId" value="Doughnut">Doughnut Chart</input>
+		<input type="checkbox" id="Policemapid" value="policemap">Police Station Locator</input>
+		<button class="button2" onclick="policeStationPlotChart()" > View </button><br/>
+	</div>
+	<div id="policeStationChartId" style="height:600px;width:1090px;">
+		<canvas id="policeStationLineChart" width="1200" height="400" style="margin-left:50px;display: block;height:320px;width:970px;" ></canvas>
+		<canvas id="policeStationBarChart" width="1200" height="400" style="margin-left:50px;display: block;height:320px;width:970px;"></canvas>
+		<canvas id="policeStationPieChart" width="1200" height="400" style="margin-left:50px;display: block;height:320px;width:970px;"></canvas>
+		<canvas id="policeStationPolarChart" width="1200" height="400" style="margin-left:50px;display: block;height:320px;width:970px;"></canvas>
+		<canvas id="policeStationDoughnutChart" width="1200" height="400" style="margin-left:50px;display: block;height:320px;width:970px;"></canvas>
+        <div id="pmap" width="1212" height="650" style="margin-left:120px;display: block;height:600px;width:970px;"></div>
+        
+	</div>
+</div>
+</article>
+
+<article id="fireStationArticle" class="subHeadClass">
+	<h1 class="headClass" >Fire Station Data</h1>
+	<div class="center" style="margin-left: 230px;">
+	<button class="button1" onclick="fireStationChart()" >Chart</button>
+	<button class="button1" onclick="new FireStationData().filter()" >Filter</button>
+	<button id="exportButton" class="button1" onclick="openExport('fireStationData')">Export</button>
+	<select id="exportFireId" class="button1">
+ 	 	<option value="csv">Export as CSV</option>
+  		<option value="json">Export as JSON</option>
+	</select>
+	</div>
+	<br/>
+	<div id="FRowFilter" style="margin-left:130px; font-size:150%;">
+		
+        <label style="font-family:serif;">Row Filter </label>
+		<input type="checkbox" id="foneId" value="one"><label style="font-family:serif; ;"> ZIPCODE 60607 </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="ftwoId" value="two"><label style="font-family:serif; ;">  ZIPCODE 60636  </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="fthousandId" value="thousand"><label style="font-family:serif; ;"> ZIPCODE 60625 </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button id="filterbutton" class="button1" onclick="new Frowdata().callDataSet()" style="height:30px;width:100px;font-weight:bold;margin-left:20px;" >Filter</button><br/>
+	</div>
+	<br/>
+	<br/>
+	<div id="fireStationFilter" style="height:70px;width:1200px;">
+	</div>
+	<div id="Fstable"></div>
+	<div id="fireDataSet" style="overflow:scroll;height:400px;width: 1360px;">
+</div>
+<div id="fireStationId" style="overflow:scroll;">
+<div id="fireStationChartTypeId" style="margin-left: 130px;font-size:150%;">
+		<label>Visualize Data As </label>
+		<input type="checkbox" id="fireStationLineId" value="Line" style="margin-left:30px;">Line Chart</input>
+		<input type="checkbox" id="fireStationBarId" value="Bar">Bar Chart</input>
+		<input type="checkbox" id="fireStationPieId" value="Pie">Pie Chart</input>
+		<input type="checkbox" id="fireStationPolarId" value="Polar">Polar Chart</input>
+		<input type="checkbox" id="fireStationDoughnutId" value="Doughnut">Doughnut Chart</input>
+		<button class="button2" onclick="fireStationPlotChart()" >View</button><br/>
+</div>
+<div id="fireStationChartId" style="height:600px;width:1090px;">
+		<canvas id="fireStationLineChart" style="margin-left:50px;display: block;height:320px;width:970px;" ></canvas>
+		<canvas id="fireStationBarChart" style="margin-left:50px;display: block;height:320px;width:970px;"></canvas>
+		<canvas id="fireStationPieChart"  style="margin-left:50px;display: block;height:400px;width:970px;"></canvas>
+		<canvas id="fireStationPolarChart" style="margin-left:50px;display: block;height:400px;width:970px;"></canvas>
+		<canvas id="fireStationDoughnutChart" style="margin-left:50px;display: block;height:400px;width:970px;"></canvas>
+</div>
+</div>
+</article>
+
+<article id="lifeSafetyEvaluationArticle" class="subHeadClass">
+	<h1 class="headClass" >Life Safety Evaluation Data</h1>
+	<div class="center" style="margin-left: 230px;">
+	<button class="button1" onclick="lifeSafetyChart()" >Chart</button>
+	<button class="button1" onclick="new LifeSafetyData().filter()">Filter</button>
+	<button  id="exportButton" class="button1" onclick="openExport('lifeSafetyData')">Export</button>
+	<select id="exportLifeId" class="button1" >
+ 	 	<option value="csv">Export as CSV</option>
+  		<option value="json">Export as JSON</option>
+	</select>
+	</div>
+	<br/>
+	<div id="LRowFilter" style="margin-left:130px; font-size:150%;">
+		
+        <label style="font-family:serif;">Row Filter </label>
+		<input type="checkbox" id="loneId" value="one"><label style="font-family:serif; ;"> SPRINKLED  </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="ltwoId" value="two"><label style="font-family:serif; ;">  PASSED  </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="lthousandId" value="thousand"><label style="font-family:serif; ;"> FAILED </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button id="filterbutton" class="button1" onclick="new Lrowdata().callDataSet()" style="height:30px;width:100px;font-weight:bold;margin-left:20px;" >Filter</button><br/>
+	</div>
+	<br/>
+	<br/>
+	<div id="lifeSafetyFilter" style="height:100px;width:1200px;">
+	</div>
+	<div id="Lstable"></div>
+	<div id="lifesafetyDataSet" style="overflow:scroll;height:400px;width: 1360px;">
+	</div>
+	<div id="lifeSafetyId" style="overflow:scroll;">
+	<div id="lifeSafetyChartTypeId" style="margin-left: 130px;font-size:150%;">
+		<label>Visualize Data As </label>
+		<input type="checkbox" id="lifeSafetyLineId" value="Line" style="margin-left:30px;">Line Chart</input>
+		<input type="checkbox" id="lifeSafetyBarId" value="Bar">Bar Chart</input>
+		<input type="checkbox" id="lifeSafetyPieId" value="Pie">Pie Chart</input>
+		<input type="checkbox" id="lifeSafetyPolarId" value="Polar">Polar Chart</input>
+		<input type="checkbox" id="lifeSafetyDoughnutId" value="Doughnut">Doughnut Chart</input>
+		<button class="button2" onclick="lifeSafetyPlotChart()"  >View</button><br/>
+	</div>
+	<div id="lifeSafetyChartId" style="height:600px;width:1090px;">
+		<canvas id="lifeSafetyLineChart" style="margin-left:50px;display: block;height:320px;width:970px;" ></canvas>
+		
+		<br/>
+		<canvas id="lifeSafetyBarChart"  style="margin-left:50px;display: block;height:320px;width:970px;"></canvas><br/>
+		<canvas id="lifeSafetyPieChart" style="margin-left:50px;display: block;height:400px;width:970px;"></canvas><br/><br/>
+		<canvas id="lifeSafetyPolarChart"style="margin-left:50px;display: block;height:400px;width:970px;"></canvas><br/><br/>
+		<canvas id="lifeSafetyDoughnutChart"style="margin-left:50px;display: block;height:400px;width:970px;"></canvas><br/><br/>
+	</div>
+	</div>
+</article>
+
+<article id="publicHealthServiceArticle" class="subHeadClass">
+	<h1 class="headClass" >Public Health Service Data</h1>
+<div class="center" style="margin-left: 230px;">
+	<button class="button1" onclick="publicHealthServiceChart()">Chart</button>
+	<button class="button1" onclick="new PublicHealthData().filter()" >Filter</button>
+	<button  id="exportButton" class="button1" onclick="openExport('publicHealthData')">Export</button>
+	<select id="exportHealthId" class="button1">
+ 	 	<option value="csv">Export as CSV</option>
+  		<option value="json">Export as JSON</option>
+	</select>
+	</div>
+	<br/>
+	<div id="PRowFilter" style="margin-left:130px; font-size:150%;">
+		<label style="font-family:serif;">Row Filter </label>
+		<input type="checkbox" id="puoneId" value="one"><label style="font-family:serif; ;"> Per Capita Income (> 50000)</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="putwoId" value="two"><label style="font-family:serif; ;"> Per Capita Income (< 50000) </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" id="puthousandId" value="thousand"><label style="font-family:serif; ;">Birth Rate(> 10) </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button id="filterbutton" class="button1" onclick="new Pubrowdata().callDataSet()" style="height:30px;width:100px;font-weight:bold;margin-left:20px;" >Filter</button><br/>
+	</div>
+	<br/><br/>
+	<div id="publicHealthFilter" style="height:120px;width:1200px;">
+	</div>
+	<div id="Phtable"></div>
+	<div id="publichealthDataSet" style="overflow:scroll;height:400px;width: 1360px;">
+	</div>
+	<div id="publicHealthServiceId" style="overflow:scroll;">
+	<div id="publicHealthServiceChartTypeId" style="margin-left: 130px;font-size:150%;">
+		<label>Visualize Data As </label>
+		<input type="checkbox" id="publicHealthServiceLineId" value="Line" style="margin-left:30px;">Line Chart</input>
+		<input type="checkbox" id="publicHealthServiceBarId" value="Bar">Bar Chart</input>
+		<input type="checkbox" id="publicHealthServicePieId" value="Pie">Pie Chart</input>
+		<input type="checkbox" id="publicHealthServicePolarId" value="Polar">Polar Chart</input>
+		<input type="checkbox" id="publicHealthServiceDoughnutId" value="Doughnut">Doughnut Chart</input>
+		<button class="button2" onclick="publicHealthServicePlotChart()" >View</button><br/>
+	</div>
+	<div id="publicHealthServiceChartId" style="height:600px;width:1090px;">
+		<canvas id="publicHealthServiceLineChart" style="margin-left:50px;display: block;height:320px;width:970px;" ></canvas><br/>
+		<canvas id="publicHealthServiceBarChart" style="margin-left:50px;display: block;height:320px;width:970px;"></canvas><br/>
+		<canvas id="publicHealthServicePieChart" style="margin-left:50px;display: block;height:400px;width:970px;"></canvas><br/><br/>
+		<canvas id="publicHealthServicePolarChart" style="margin-left:50px;display: block;height:400px;width:970px;"></canvas><br/><br/>
+		<canvas id="publicHealthServiceDoughnutChart" style="margin-left:50px;display: block;height:400px;width:970px;"></canvas><br/><br/>
+	</div>
+	</div>
+
+</article>
+</div>
+<footer>Copyright &copy; Team 14</footer>
+
+</body>
+</html>
